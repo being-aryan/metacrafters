@@ -20,7 +20,7 @@ function mintNFT (name,age,eyecolor,gender) {
         'eyecolor':eyecolor,
         'gender':gender
     }
-    a.unshift(nft)
+    a.push(nft)
 
 }
 //create an NFTs in mintNFT function
