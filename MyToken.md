@@ -71,5 +71,5 @@ aryan09
 
 ## License
 
-MIT License
+[MIT License](../LICENSE)
 
