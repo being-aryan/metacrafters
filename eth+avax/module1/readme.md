@@ -34,21 +34,42 @@ This function sets the number of electricity units and updates the payment statu
 
   - Updates the `unit` and `isBillPaid` state variables if all checks pass.
 
-## Error Handling
+### Executing program
 
-- **`require()`**:
-  - Validates input conditions. If the condition fails, it reverts the transaction and provides an error message.
-  
-- **`revert()`**:
-  - Explicitly stops execution and reverts any state changes if certain conditions are not met, with a custom error message.
-  
-- **`assert()`**:
-  - Used for internal checks that should never fail. If it fails, it indicates a critical issue in the contract logic.
+To run this program, you can use Remix, an online Solidity IDE. To get started, go to the Remix website at https://remix.ethereum.org/.
 
-## Usage
-
-To use this contract, deploy it on a compatible Ethereum network and call the `setElectricityBill` function with the appropriate parameters:
+Once you are on the Remix website, create a new file by clicking on the "+" icon in the left-hand sidebar. Save the file with a .sol extension (e.g.,MyToken.sol). Copy and paste the following code into the file:
 
 ```solidity
-setElectricityBill(150, true);
+// SPDX-License-Identifier: MIT
+
+/*
+REQUIREMENTS
+Contract successfully uses require()
+Contract successfully uses assert()
+Contract successfully uses revert() statements
+*/
+pragma solidity ^0.8.20;
+
+contract ErrorHandling {
+    uint public unit;
+    bool public isBillPaid;
+//function to set Electricitybill with a require statement
+    function setElectricityBill(uint _unit, bool _isBillPaid) public {
+        require(_unit > 100, "Unit must be greater than 100");
+// revert function is used 
+        if (!_isBillPaid) {
+            revert("Kindly pay the electricity bill");
+        }
+//assert function is used 
+        assert(_isBillPaid == true);
+
+        unit = _unit;
+        isBillPaid = _isBillPaid;
+    }
+}
+```
+### License
+
+
 
