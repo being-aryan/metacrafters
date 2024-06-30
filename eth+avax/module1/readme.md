@@ -70,6 +70,7 @@ contract ErrorHandling {
 }
 ```
 ### License
+[MIT License](../LICENSE)
 
 
 
