@@ -37,9 +37,9 @@
 
 Initializes the token with the name "Degen" and symbol "DKN". Also adds predefined items to the in-game store:
 
-- Grenade: 10 DKN
-- Landmine: 20 DKN
-- Pistol: 50 DKN
+- GOLD_COIN: 10 DKN
+- SILVER_COIN: 20 DKN
+- GEM: 50 DKN
 
 ### `mint(address to, uint256 amount)`
 
@@ -81,4 +81,6 @@ Initializes the token with the name "Degen" and symbol "DKN". Also adds predefin
 - **Mint Tokens**: (Owner only)
   ```solidity
   mint(address_to, amount);
+## License
+[MIT License](../../LICENSE)
 
