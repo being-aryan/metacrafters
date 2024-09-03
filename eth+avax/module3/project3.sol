@@ -1,36 +1,26 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+pragma solidity ^0.8.20;
+
+// import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 
-contract myToken is ERC20, Ownable {
-
-// Only contract owner should be able to mint tokens
-// Any user can transfer tokens
-// Any user can burn tokens
-
-    event TokensBurned(address indexed user, uint amount);
-    event TokensMinted(address indexed user, uint amount);
-
-    constructor() ERC20("myToken", "MTKN") Ownable(msg.sender) {
-        _mint(msg.sender,  1000); 
-        
+contract CryptoArtToken is Ownable, ERC20Burnable {
+    constructor(uint256 initialSupply) ERC20("CryptoArtToken", "CAT") Ownable(msg.sender) {
+        _mint(msg.sender, initialSupply);
     }
 
-    function mintTokens(address to, uint amount) external onlyOwner {
-        _mint(to, amount);
-        emit TokensMinted(msg.sender, amount);
+    function createNewArtPiece(address _toAddress, uint _amount) public onlyOwner {
+        _mint(_toAddress, _amount);
     }
 
-    function burnTokens(uint amount) external {
-        require(balanceOf(msg.sender) >= amount, "Insufficient balance");
-        _burn(msg.sender, amount);
-        emit TokensBurned(msg.sender, amount);
+    function destroyArtPiece(uint _amount) public {
+        _burn(msg.sender, _amount);
     }
 
-
-    function transferTo(address to, uint amount) external {
-        transfer(to, amount);  
+    function shareArtPiece(address _toAddress, uint _amount) public {
+        bool success = transfer(_toAddress, _amount);
+        require(success, "Transfer failed.");
     }
 }
